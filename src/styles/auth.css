@@ -1,0 +1,120 @@
+/* Background */
+.auth-page {
+  min-height: 100vh;
+  background-color: #020617;
+  color: #e5e7eb;
+  font-family: system-ui, sans-serif;
+
+  /* Animated grid */
+  background-image:
+    radial-gradient(circle at center, #0f172a 1px, transparent 1px);
+  background-size: 24px 24px;
+  animation: gridMove 20s linear infinite;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Subtle drifting motion */
+@keyframes gridMove {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 200px 200px;
+  }
+}
+
+
+/* Card */
+.auth-card {
+  width: 380px;
+  background: rgba(2, 6, 23, 0.9);
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(6px);
+}
+
+/* Title */
+.auth-card h1 {
+  margin-bottom: 6px;
+}
+
+.auth-card p {
+  color: #94a3b8;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+.auth-card input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  background: #020617;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #e5e7eb;
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: #64748b;
+}
+
+/* Button */
+.auth-card button {
+  width: 100%;
+  padding: 10px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+.auth-card button:hover {
+  background: #1e293b;
+}
+
+/* Links */
+.auth-link {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.auth-link a {
+  color: #e5e7eb;
+  text-decoration: none;
+}
+
+.auth-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(56,189,248,0.15), transparent 70%);
+  filter: blur(80px);
+  animation: float 18s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.glow-1 {
+  top: 10%;
+  left: 15%;
+}
+
+.glow-2 {
+  bottom: 15%;
+  right: 10%;
+  animation-delay: 6s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-40px); }
+  100% { transform: translateY(0px); }
+}
