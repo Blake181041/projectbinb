@@ -3410,6 +3410,14 @@
         "url": "https://rawcdn.githack.com/fowntain/web-port-doge/1102f068fff0083d2a5ed979ebac6425540d78a5/the-man-in-the-window/index.html",
         "disabled": false,
         "local": false
+      },
+      {
+        "appName": "Five Nights at Epsteins",
+        "desc": "Survival/Horror apps",
+        "icon": "https://slithergame.io/data/image/game/five-nights-at-epsteins.jpg",
+        "url": "https://fivenightsatepstein.com",
+        "disabled": false,
+        "local": false
       }
     ],
     "Multiplayer": [

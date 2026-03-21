@@ -570,3 +570,105 @@ export const designConfig = [
     },
   },
 ];
+const colorConfig = {
+    // Primary colors
+    primary: '#007bff',
+    primaryLight: '#0056b3',
+    primaryDark: '#003d82',
+
+    // Secondary colors
+    secondary: '#6c757d',
+    secondaryLight: '#5a6268',
+    secondaryDark: '#545b62',
+
+    // Status colors
+    success: '#28a745',
+    warning: '#ffc107',
+    danger: '#dc3545',
+    info: '#17a2b8',
+
+    // Neutral colors
+    white: '#ffffff',
+    black: '#000000',
+    gray100: '#f8f9fa',
+    gray200: '#e9ecef',
+    gray300: '#dee2e6',
+    gray400: '#ced4da',
+    gray500: '#adb5bd',
+    gray600: '#6c757d',
+    gray700: '#495057',
+    gray800: '#343a40',
+    gray900: '#212529',
+
+    // UI element specific colors
+    background: '#ffffff',
+    text: '#212529',
+    border: '#dee2e6',
+    shadow: 'rgba(0, 0, 0, 0.1)',
+};
+
+/**
+ * Get a color value by key
+ * @param {string} key - The color key
+ * @returns {string} The color value
+ */
+export const getColor = (key) => colorConfig[key];
+
+/**
+ * Update a color value
+ * @param {string} key - The color key
+ * @param {string} value - The new color value (hex, rgb, etc.)
+ */
+export const setColor = (key, value) => {
+    colorConfig[key] = value;
+    applyColorChanges();
+};
+
+/**
+ * Update multiple colors at once
+ * @param {Object} colors - Object with color key-value pairs
+ */
+export const setColors = (colors) => {
+    Object.assign(colorConfig, colors);
+    applyColorChanges();
+};
+
+/**
+ * Get all colors
+ * @returns {Object} The complete color configuration
+ */
+export const getColors = () => ({ ...colorConfig });
+
+/**
+ * Reset colors to default
+ */
+export const resetColors = () => {
+    // Reset to original defaults
+    Object.assign(colorConfig, {
+        primary: '#007bff',
+        secondary: '#6c757d',
+        success: '#28a745',
+        warning: '#ffc107',
+        danger: '#dc3545',
+        info: '#17a2b8',
+    });
+    applyColorChanges();
+};
+
+/**
+ * Apply color changes to CSS variables for dynamic updates
+ */
+const applyColorChanges = () => {
+    const root = document.documentElement;
+    Object.entries(colorConfig).forEach(([key, value]) => {
+        root.style.setProperty(`--color-${key}`, value);
+    });
+};
+
+// Initialize CSS variables on load
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', applyColorChanges);
+    applyColorChanges();
+}
+
+export default colorConfig;

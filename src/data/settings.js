@@ -84,6 +84,21 @@ export const customizeConfig = ({ options, updateOption }) => ({
     action: (a) => updateOption(a),
   },
   3: {
+    name: 'Custom Colors',
+    desc: 'Customize the colors of various UI elements.',
+    value: 'Customize (havent coded ts yet)',
+    type: 'button',
+    action: () => import('/src/utils/config.js').then(({ openColorConfig }) => openColorConfig()),
+  },
+  4: {
+    name: 'Backgrounds',
+    desc: 'Change the background image.',
+    config: designConfig,
+    value: find(designConfig, (c) => c.value?.bgDesign === options.bgDesign, 0),
+    type: 'select',
+    action: (a) => updateOption(a),
+  },
+  5: {
     name: 'Apps per Page',
     desc: 'Number of apps to show per page ("All" will show everything).',
     config: appsPerPageConfig,
@@ -91,7 +106,7 @@ export const customizeConfig = ({ options, updateOption }) => ({
     type: 'select',
     action: (a) => updateOption(a),
   },
-  4: {
+  6: {
     name: 'Navigation Scale',
     desc: 'Scale navigation bar size (logo & font) globally.',
     config: navScaleConfig,
@@ -99,20 +114,28 @@ export const customizeConfig = ({ options, updateOption }) => ({
     type: 'select',
     action: (a) => updateOption(a),
   },
-  5: {
+  7: {
     name: 'Tabs Bar',
     desc: 'Show the tabs bar, allowing you to open multiple sites when browsing.',
     value: options.showTb ?? true,
     type: 'switch',
     action: (b) => setTimeout(() => updateOption({ showTb: b }), 100),
   },
-  6: {
+  8: {
     name: 'Donation button',
     desc: 'Toggle whether you want the "Support us" button to show.',
     value: options.donationBtn ?? true,
     type: 'switch',
     action: (b) => setTimeout(() => updateOption({ donationBtn: b }), 100),
-  },
+  }//,
+  //9: {
+    //name: 'Custom Fonts',
+    //desc: 'Choose the main font for ProjectBinB',
+    //config: 'fontConfig',
+    //value: 'find(fontConfig, (c) => c.value?.font === options.font, 0)',
+    //type: 'select',
+    //action: (a) => updateOption(a),
+  //}
 });
 
 export const browsingConfig = ({ options, updateOption }) => ({
