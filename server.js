@@ -106,7 +106,7 @@ const proxy = (url, type = "application/javascript") => async (req, reply) => {
 app.get("/assets/img/*", proxy(req => `https://dogeub-assets.pages.dev/img/${req.params["*"]}`, ""));
 app.get("/assets-fb/*", proxy(req => `https://dogeub-assets.pages.dev/img/server/${req.params["*"]}`, ""));
 app.get("/js/script.js", proxy(() => "https://byod.privatedns.org/js/script.js"));
-app.get("/ds", (req, res) => res.redirect("https://discord.gg/ZBef7HnAeg"));
+app.get("/ds", (req, res) => res.redirect("https://discord.gg/bU4SJ2n7yj"));
 app.get("/return", async (req, reply) =>
   req.query?.q
     ? fetch(`https://duckduckgo.com/ac/?q=${encodeURIComponent(req.query.q)}`)
@@ -121,4 +121,4 @@ app.setNotFoundHandler((req, reply) =>
     : reply.code(404).send({ error: "Not Found" })
 );
 
-app.listen({ port }).then(() => console.log(`Server running on ${port}`));
+app.listen({ port }).then(() => console.log(`Server running on the gay port ${port}`));
