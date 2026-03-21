@@ -3573,6 +3573,16 @@
         "disabled": false,
         "local": false
       }
+    ],
+    "Controller": [
+      {
+        "appName": "Ragdoll football 2 players",
+        "desc": "Fun action",
+        "icon": "https://static.playhop.com/images/993fe_2977039_ad3b4/89bdf665d/2a00000192251c29_587bc93/315711a08df0cc842834_080f55/pjpg160x160",
+        "url": "https://playhop.com/app/375644",
+        "disabled": false,
+        "local": false
+      }
     ]
   }
 }
