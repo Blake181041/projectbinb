@@ -6,3 +6,7 @@ Coming to V2
  b. make it look like your doing iready or whatever on Gogardians screen.
 4. better cloaking
 5. My games
+
+
+
+RUN COMMAND: npm install && npm run build && node server.js

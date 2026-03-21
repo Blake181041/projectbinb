@@ -1,59 +1,93 @@
-import React, { useState } from "react";
-import "./GibbyAI.css";
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function GibbyAI() {
-  const [open, setOpen] = useState(false);
-  const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([
-    { sender: "ai", text: "Hey! I’m Gibby AI 👋" }
-  ]);
-
-  function think(text) {
-    const t = text.toLowerCase();
-    if (t.includes("hello")) return "Hello there!";
-    if (t.includes("github")) return "Looks like you like GitHub 👀";
-    if (t.includes("search")) return "Try typing into the main search bar.";
-    return "I’m here.";
-  }
-
-  function send() {
-    if (!input.trim()) return;
-
-    setMessages(m => [
-      ...m,
-      { sender: "user", text: input },
-      { sender: "ai", text: think(input) }
-    ]);
-
-    setInput("");
-  }
-
   return (
-    <div className="gibby-ai-wrapper">
-      <button className="ai-button" onClick={() => setOpen(!open)}>
-        Gibby AI
-      </button>
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css?family=Space%20Grotesk:700|Space%20Grotesk:400');
 
-      {open && (
-        <div className="ai-panel">
-          <div className="ai-header">Gibby AI</div>
+        :root {
+          --m: 0.85rem;
 
-          <div className="ai-messages">
-            {messages.map((m, i) => (
-              <div key={i} className={m.sender}>
-                {m.text}
-              </div>
-            ))}
-          </div>
+          --red: #FF6565;
+          --pink: #FF64F9;
+          --purple: #6B5FFF;
+          --blue: #4D8AFF;
+          --green: #5BFF89;
+          --yellow: #FFEE55;
+          --orange: #FF6D1B;
+        }
 
-          <input
-            placeholder="Ask Gibby…"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={e => e.key === "Enter" && send()}
-          />
-        </div>
-      )}
-    </div>
+        .gibby-link {
+          text-decoration: none;
+          color: inherit;
+          display: inline-block;
+        }
+
+        .gibby-btn {
+          border: calc(0.08 * var(--m)) solid transparent;
+          position: relative;
+          color: #F3F3F3;
+          font-family: 'Space Grotesk';
+          font-size: var(--m);
+          border-radius: calc(0.7 * var(--m));
+          padding: calc(0.5 * var(--m)) calc(1 * var(--m));
+          cursor: pointer;
+          background:
+            linear-gradient(#121213, #121213),
+            linear-gradient(#121213 50%, rgba(18,18,19,0.6) 80%, rgba(18,18,19,0)),
+            linear-gradient(90deg,
+              var(--orange),
+              var(--yellow),
+              var(--green),
+              var(--blue),
+              var(--purple),
+              var(--pink),
+              var(--red)
+            );
+          background-origin: border-box;
+          background-clip: padding-box, border-box, border-box;
+          background-size: 200%;
+          animation: animate 2s infinite linear;
+        }
+
+        .gibby-btn::before {
+          content: '';
+          position: absolute;
+          left: 20%;
+          bottom: -20%;
+          width: 60%;
+          height: 30%;
+          z-index: -1;
+          background: linear-gradient(90deg,
+            var(--orange),
+            var(--yellow),
+            var(--green),
+            var(--blue),
+            var(--purple),
+            var(--pink),
+            var(--red)
+          );
+          background-size: 200%;
+          filter: blur(calc(0.8 * var(--m)));
+          animation: animate 2s infinite linear;
+        }
+
+        .gibby-btn:hover,
+        .gibby-btn:hover::before {
+          animation: animate 0.5s infinite linear;
+        }
+
+        @keyframes animate {
+          0% { background-position: 0%; }
+          100% { background-position: 200%; }
+        }
+      `}</style>
+
+      <Link to="/gibbyai" className="gibby-link">
+        <button className="gibby-btn">Gibby AI</button>
+      </Link>
+    </>
   );
 }

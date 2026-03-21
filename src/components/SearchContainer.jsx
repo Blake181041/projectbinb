@@ -7,6 +7,7 @@ import { useOptions } from '../utils/optionsContext';
 import Logo from '../components/Logo';
 import theme from '../styles/theming.module.css';
 import 'movement.css';
+import GibbyAI from './GibbyAI';
 
 const SearchContainer = memo(function SearchContainer({ logo = true, cls, nav = true, navigating }) {
   const [query, setQuery] = useState('');
@@ -136,7 +137,7 @@ const SearchContainer = memo(function SearchContainer({ logo = true, cls, nav = 
               onKeyDown={handleKeyDown}
             />
 
-            <LucideSearch className="w-[1.08rem] h-[1.08rem] shrink-0" />
+            <LucideSearch className="w-[1.08rem] h-[1.08rem] shrink-0" /> <GibbyAI />
           </div>
 
           {results.length > 0 && (
