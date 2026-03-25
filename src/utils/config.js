@@ -570,6 +570,47 @@ export const designConfig = [
     },
   },
 ];
+export const bgConfig = [
+  //{
+    //option: 'Ducks',
+    //value: {
+      //bgImage: 'ducks',
+      //getCSS: (url) => `
+        //url(${url}) center/cover no-repeat
+    //`,
+    //},
+  //},
+  {
+    option: 'Mountains',
+    value: {
+      bgImage: 'mountains',
+      getCSS: (color) => `
+        repeating-linear-gradient(
+          45deg,
+          rgba(${color},0.15),
+          rgba(${color},0.15) 2px,
+          transparent 2px,
+          transparent 8px
+        )`,
+    },
+  },
+  {
+    option: 'idk',
+    value: {
+      bgImage: 'idk',
+      getCSS: (color) => `
+        linear-gradient(to right, rgba(${color},0.2) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(${color},0.2) 1px, transparent 1px)
+      `,
+    },
+  },
+  {
+    option: 'None (default)',
+    value: {
+      bgImage: 'none',
+    },
+  },
+];
 const colorConfig = {
     // Primary colors
     primary: '#007bff',

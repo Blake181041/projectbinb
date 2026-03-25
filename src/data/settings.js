@@ -6,6 +6,7 @@ import {
   searchConfig,
   prConfig,
   designConfig,
+  bgConfig,
 } from '/src/utils/config';
 
 export const privacyConfig = ({ options, updateOption, openPanic }) => ({
@@ -93,8 +94,8 @@ export const customizeConfig = ({ options, updateOption }) => ({
   4: {
     name: 'Backgrounds',
     desc: 'Change the background image.',
-    config: designConfig,
-    value: find(designConfig, (c) => c.value?.bgDesign === options.bgDesign, 0),
+    config: bgConfig,
+    value: find(bgConfig, (c) => c.value?.bgDesign === options.bgDesign, 0),
     type: 'select',
     action: (a) => updateOption(a),
   },

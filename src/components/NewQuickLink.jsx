@@ -21,7 +21,6 @@ const FieldOption = ({ name, type, state }) => {
     </Field>
   );
 };
-
 const NewQuickLink = ({ state, set, update }) => {
   const { options } = useOptions();
   const [form, setForm] = useState({

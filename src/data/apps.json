@@ -287,6 +287,14 @@
         "local": false
       },
       {
+        "appName": "Hollow Knight",
+        "desc": "Fun Action",
+        "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiasQy5S1lsq3t-Jl4Po_q9tXtf-gqnnMsGQ&s",
+        "url": "https://hollowknight.io",
+        "disabled": false,
+        "local": false
+      },
+      {
         "appName": "Funny Shooter 2",
         "desc": "Fun Action",
         "icon": "/assets/img/funnyshooter2.webp",

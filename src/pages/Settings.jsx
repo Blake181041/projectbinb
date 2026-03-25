@@ -65,7 +65,7 @@ const baseConfigs = [
     name: 'Super Advanced',
     icon: Bug,
     keywords: [
-      '',
+      'debug',
     ],
     key: 'supadvancedConfig',
   },

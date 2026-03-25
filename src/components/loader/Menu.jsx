@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useOptions } from '/src/utils/optionsContext';
 import loaderStore from '/src/utils/hooks/loader/useLoaderStore';
-import Zoom from './menu/Zoom';
+import Zoom from './viewer/menu/Zoom';
 import Bookmarks from '../Bookmarks';
 
 const devTools = (fr) => {

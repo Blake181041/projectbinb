@@ -33,7 +33,7 @@ const Footer = memo(() => {
         <div>
           © 2026 Portal Network Inc.
           <a
-            href="https://www.portal-network.com"></a>
+            href="https://www.portal-network.com/?reurl=projectbinb-footer"></a>
         </div>
         <div
           className={clsx(
