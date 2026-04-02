@@ -1,6 +1,6 @@
 ![Local description](./preview.png)
-+ ProjectBinB
-
+# ProjectBinB
+ProjectBinB is an educational tool that helps you learn.
 
 
 
