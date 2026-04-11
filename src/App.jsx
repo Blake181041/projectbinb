@@ -11,6 +11,7 @@ import { designConfig as bgDesign } from './utils/config';
 import './index.css';
 import 'nprogress/nprogress.css';
 import GibbyAI from "./components/GibbyAI";
+import Notes from "./pages/Notes";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Account from "./pages/Account";
