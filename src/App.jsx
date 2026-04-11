@@ -56,6 +56,7 @@ const ThemedApp = memo(() => {
       { path: '/new', element: <New /> },
       { path: '*', element: <NotFound /> },
       { path: '/gibby', element: <GibbyAI /> },
+      { path: '/notes', element: <Notes /> },
     ],
     [],
   );
