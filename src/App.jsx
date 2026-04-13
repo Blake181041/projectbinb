@@ -12,6 +12,8 @@ import './index.css';
 import 'nprogress/nprogress.css';
 import GibbyAI from "./components/GibbyAI";
 import Notes from "./pages/Notes";
+import Terminal from "./pages/terminal";
+import NumberGuesser from "./pages/NumberGuesser";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Account from "./pages/Account";
@@ -58,6 +60,8 @@ const ThemedApp = memo(() => {
       { path: '*', element: <NotFound /> },
       { path: '/gibby', element: <GibbyAI /> },
       { path: '/notes', element: <Notes /> },
+      { path: '/terminal', element: <Terminal /> },
+      { path: '/guessthenumber', element: <NumberGuesser /> },
     ],
     [],
   );
