@@ -14,6 +14,7 @@ import GibbyAI from "./components/GibbyAI";
 import Notes from "./pages/Notes";
 import Terminal from "./pages/terminal";
 import NumberGuesser from "./pages/NumberGuesser";
+import Cheats from "./pages/Cheats";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Account from "./pages/Account";
@@ -62,6 +63,7 @@ const ThemedApp = memo(() => {
       { path: '/notes', element: <Notes /> },
       { path: '/terminal', element: <Terminal /> },
       { path: '/guessthenumber', element: <NumberGuesser /> },
+      { path: '/cheats', element: <Cheats /> }
     ],
     [],
   );
