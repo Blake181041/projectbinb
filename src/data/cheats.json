@@ -1,0 +1,21 @@
+{
+    "default": [
+        {
+            "cheatName": "Cheat name",
+            "desc": "Cheat description",
+            "icon": "",
+            "url": "#",
+            "disabled": false
+        }
+    ],
+    "cheats": [
+        {
+            "cheatName": "Blooket",
+            "desc": "Blooket cheats 💀💀💀",
+            "icon": "https://blooket.com/favicon.ico",
+            "url": "https://blooketbot.schoolcheats.net",
+            "disabled": false
+        }
+    ]
+
+}
