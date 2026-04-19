@@ -197,6 +197,14 @@
         "local": false
       },
       {
+        "appName": "Blooket Bot",
+        "desc": "Fun Action",
+        "icon": "https://www.blooket.com/favicon.ico",
+        "url": "https://blooketbot.schoolcheats.net/",
+        "disabled": false,
+        "local": false
+      },
+      {
         "appName": "GeForce Now",
         "desc": "All-Time favorites",
         "icon": "/assets/img/geforcenow.webp",

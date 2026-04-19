@@ -1,0 +1,162 @@
+import clsx from 'clsx';
+import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useOptions } from '/src/utils/optionsContext';
+import loaderStore from '/src/utils/hooks/loader/useLoaderStore';
+
+export default function Menu2() {
+  const {
+    showMenu,
+    toggleMenu,
+    tabs,
+    addTab,
+    setActive,
+    removeTab,
+    showTabs,
+    activeFrameRef,
+    toggleUI,
+  } = loaderStore();
+  const { options } = useOptions();
+  const nav = useNavigate();
+  const [showBookmarks, setShowBm] = useState(false);
+
+  const newTab = useCallback(() => {
+    if (tabs.length < 20) {
+      let uuid = crypto.randomUUID();
+      addTab({
+        title: 'New Tab',
+        id: uuid,
+        url: 'tabs://new',
+      });
+      setActive(uuid);
+    }
+  }, [tabs.length]);
+
+  const fs = useCallback(() => {
+    activeFrameRef?.current && activeFrameRef.current?.requestFullscreen?.();
+  }, [activeFrameRef]);
+
+  const clearTabs = useCallback(() => {
+    tabs.forEach((tab) => removeTab(tab.id));
+    newTab();
+  }, [tabs, removeTab, newTab]);
+
+  const cheats = useCallback(() => {
+
+    });
+
+  const items = [
+    {
+      name: '',
+      shortcut: 'alt + n',
+      fn: newTab,
+    },
+    {
+      name: 'Cheats',
+      fn: cheats,
+    },
+    { name: 'Bookmarks', shortcut: 'alt + b', fn: () => setShowBm(true) },
+    {
+      name: 'Fullscreen',
+      shortcut: 'shift + f',
+      fn: fs,
+      disabled: !activeFrameRef?.current,
+    },
+    { name: 'zoom-cmpn', isComponent: true, divider: true },
+    { name: 'Hide UI', shortcut: 'alt + z', fn: toggleUI },
+    {
+      name: 'DevTools',
+      shortcut: 'alt + i',
+      fn: togEruda,
+      disabled: !activeFrameRef?.current,
+      divider: true,
+    },
+    { name: 'Return Home', fn: () => nav('/') },
+  ];
+
+  useEffect(() => {
+
+
+    const handleKey = (e) => {
+      const key = `${e.altKey ? 'alt+' : ''}${e.shiftKey ? 'shift+' : ''}${e.key}`;
+      const action = shortcuts[key];
+
+      if (action) {
+        e.preventDefault();
+        action();
+      }
+    };
+
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [newTab, clearTabs, fs, activeFrameRef, toggleUI, togEruda]);
+
+  const cnt = clsx(
+    'absolute right-2 w-56 rounded-lg shadow-lg overflow-hidden text-sm z-50',
+    'border transition-all duration-200 origin-top-right',
+    showTabs ? 'mt-21' : 'mt-11',
+    showMenu
+      ? 'scale-100 opacity-100 pointer-events-auto'
+      : 'scale-95 opacity-0 pointer-events-none',
+  );
+
+  const item = clsx(
+    'w-full flex justify-between items-center text-left text-[0.8rem] px-3 py-2 focus:outline-none',
+    options.type === 'light' ? 'hover:bg-gray-100' : 'hover:bg-[#ffffff0c]',
+  );
+
+  return (
+    <>
+      <Bookmarks isOpen={showBookmarks} onClose={() => setShowBm(false)} inLoader={true} />
+      <div className={cnt} style={{ backgroundColor: options.menuColor || '#1a252f' }}>
+        {items.map(
+          (
+            {
+              name,
+              shortcut = null,
+              divider = null,
+              fn = null,
+              disabled = false,
+              isComponent = false,
+            },
+            id,
+          ) => (
+            <div
+              key={id}
+              disabled={disabled}
+              className={clsx(disabled ? 'opacity-50 pointer-events-none' : '')}
+            >
+              {isComponent ? (
+                <Zoom />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    !disabled && fn();
+                    showMenu && toggleMenu();
+                  }}
+                  className={item}
+                >
+                  <span>{name}</span>
+                  {shortcut && (
+                    <span className="text-[0.7rem] text-gray-500 dark:text-gray-400">
+                      {shortcut}
+                    </span>
+                  )}
+                </button>
+              )}
+              {divider && (
+                <hr
+                  className={clsx(
+                    'border-t',
+                    options.type === 'light' ? 'border-gray-300' : 'border-gray-700',
+                  )}
+                />
+              )}
+            </div>
+          ),
+        )}
+      </div>
+    </>
+  );
+}
