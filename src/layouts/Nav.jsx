@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import NavItem from '../components/NavItem';
-import { LayoutGrid, Gamepad2, Cog, EllipsisVertical } from 'lucide-react';
+import { LayoutGrid, Gamepad2, Cog, EllipsisVertical, Heart, Zap } from 'lucide-react';
 import { useOptions } from '/src/utils/optionsContext';
 import pkg from '../../package.json';
 import nav from '../styles/nav.module.css';
 import theme from '../styles/theming.module.css';
 import clsx from 'clsx';
 import Logo from '../components/Logo';
-import { memo, useMemo, useCallback } from 'react';
+import { memo, useMemo, useCallback, useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 
 const version = pkg.version;
 const itemSize = 16;
@@ -16,12 +17,14 @@ const navItems = [
   { name: 'Apps', id: 'btn-a', type: LayoutGrid, route: '/materials' },
   { name: 'Games', id: 'btn-g', type: Gamepad2, route: '/docs' },
   { name: 'Settings', id: 'btn-s', type: Cog, route: '/settings' },
-  { name: '', id: 'btn-d', type: EllipsisVertical, route: '/' }
+  { name: '', id: 'btn-d', type: EllipsisVertical, route: '#' }
 ];
 
 const Nav = memo(() => {
   const navigate = useNavigate();
   const { options } = useOptions();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
   const scale = Number(options.navScale || 1);
   const dimensions = useMemo(
@@ -37,14 +40,31 @@ const Nav = memo(() => {
 
   const handleLogoClick = useCallback(() => navigate('/'), [navigate]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const items = useMemo(
     () =>
-      navItems.map((item) => ({
+      navItems.map((item, index) => ({
         ...item,
         size: itemSize,
-        onClick: () => navigate(item.route),
+        onClick: (e) => {
+          if (item.id === 'btn-d') {
+            setIsMenuOpen(!isMenuOpen);
+          } else {
+            navigate(item.route);
+            setIsMenuOpen(false);
+          }
+        },
       })),
-    [navigate],
+    [navigate, isMenuOpen],
   );
 
   return (
@@ -67,10 +87,38 @@ const Nav = memo(() => {
           paddingRight: '0.3rem',
         }}
       >
-        {isStaticBuild ? 'Static Version' : 'v' + version}
+        {window.isStaticBuild ? 'Static Version' : 'v' + version}
       </div>
-      <div className="flex items-center gap-5 ml-auto" style={{ height: 'calc(100% - 0.5rem)' }}>
+      <div className="flex items-center gap-5 ml-auto relative" style={{ height: 'calc(100% - 0.5rem)' }}>
         <NavItem items={items} />
+        
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              ref={menuRef}
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10, scale: 0.95 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="absolute right-0 top-full mt-2 w-48 bg-[#1f2937] border border-gray-700 rounded-xl shadow-2xl overflow-hidden py-1 z-[100]"
+            >
+              <button
+                onClick={() => { navigate('/cheats'); setIsMenuOpen(false); }}
+                className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-200 hover:bg-[#374151] transition-colors"
+              >
+                <Zap size={16} className="text-yellow-400" />
+                <span>Cheats</span>
+              </button>
+              <button
+                onClick={() => { navigate('/credits'); setIsMenuOpen(false); }}
+                className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-200 hover:bg-[#374151] transition-colors"
+              >
+                <Heart size={16} className="text-pink-400" />
+                <span>Credits</span>
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
