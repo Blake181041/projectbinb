@@ -10,11 +10,13 @@ import { initPreload } from './utils/preload';
 import { designConfig as bgDesign } from './utils/config';
 import './index.css';
 import 'nprogress/nprogress.css';
-import GibbyAI from "./components/GibbyAI";
+import GibbyAIButton from "./components/GibbyAI";
+import GibbyAIPage from "./pages/GibbyAI";
 import Notes from "./pages/Notes";
 import Terminal from "./pages/terminal";
 import NumberGuesser from "./pages/NumberGuesser";
 import Cheats from "./pages/Cheats";
+import Credits from "./pages/Credits";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Account from "./pages/Account";
@@ -59,11 +61,13 @@ const ThemedApp = memo(() => {
       { path: '/settings', element: <Settings /> },
       { path: '/new', element: <New /> },
       { path: '*', element: <NotFound /> },
-      { path: '/gibby', element: <GibbyAI /> },
+      { path: '/gibby', element: <GibbyAIButton /> },
+      { path: '/gibbyai', element: <GibbyAIPage /> },
       { path: '/notes', element: <Notes /> },
       { path: '/terminal', element: <Terminal /> },
       { path: '/guessthenumber', element: <NumberGuesser /> },
-      { path: '/cheats', element: <Cheats /> }
+      { path: '/cheats', element: <Cheats /> },
+      { path: '/credits', element: <Credits /> }
     ],
     [],
   );
