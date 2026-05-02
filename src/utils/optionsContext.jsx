@@ -2,11 +2,17 @@ import { createContext, useContext, useState, useEffect, useCallback, useMemo } 
 
 const OptionsContext = createContext();
 
+const defaults = {
+  beforeUnload: true,
+  wServer: 'wss://anura.pro/',
+};
+
 const getStoredOptions = () => {
   try {
-    return JSON.parse(localStorage.getItem('options') || '{}');
+    const stored = JSON.parse(localStorage.getItem('options') || '{}');
+    return { ...defaults, ...stored };
   } catch {
-    return {};
+    return defaults;
   }
 };
 
